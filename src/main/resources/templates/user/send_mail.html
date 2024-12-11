@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html data-th-replace="~{base::parent(~{::#content},~{::title},~{::script})}" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direct Mail</title>
+</head>
+
+<body>
+
+    <div id="content">
+
+        <!-- Sidebar -->
+        <div th:if="${loggedInUser}">
+            <div data-th-replace="~{user/sidebar::sidebar}"></div>
+        </div>
+
+        <div class="sm:pl-64 pt-20" style="height: 1000px;">
+            <div class="grid grid-cols-12">
+                <div class="col-span-3"></div>
+                <div class="col-span-12 md:col-span-6">
+                    
+                    
+                    <div class="w-full max-w-2xl bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg">
+                        <h1 class="text-center text-2xl font-bold text-gray-800 dark:text-gray-200 mb-6">Send Email</h1>
+                
+                        
+                
+                        <!-- Dynamic Form -->
+                        <form id="emailForm" data-th-action="@{'/user/mail'}" data-th-object="${mailForm}"  method="POST" enctype="multipart/form-data">
+                            
+                            <!-- Email Type Selector -->
+                        <div class="mb-5">
+                            <label for="emailType" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Select Email Type</label>
+                            <select id="emailType" onchange="updateForm()" data-th-field="*{emailType}"
+                                class="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600">
+                                <option value="single">Send to One Person</option>
+                                <option value="multiple">Send to Multiple People</option>
+                                <option value="html">Send Email with HTML</option>
+                                <option value="file">Send Email with File</option>
+                            </select>
+                        </div>
+
+                            <div id="recipientField" class="mb-5">
+                                <label for="to" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Recipient Email</label>
+                                <input type="email" name="to" data-th-field="*{to}" required
+                                    class="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600">
+                            </div>
+                
+                            <div id="subjectField" class="mb-5">
+                                <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Subject</label>
+                                <input type="text" name="subject" data-th-field="*{subject}" required
+                                    class="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600">
+                            </div>
+                
+                            <div id="bodyField" class="mb-5">
+                                <label for="body" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Message</label>
+                                <textarea name="body" data-th-field="*{body}" rows="5" required
+                                    class="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600"></textarea>
+                            </div>
+                
+                            <div id="fileField" class="mb-5 hidden">
+                                <label for="file" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Attachment</label>
+                                <input type="file" name="file" data-th-field="*{file}"
+                                    class="mt-2 w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600">
+                            </div>
+                
+                            <button type="submit"
+                                class="w-full bg-gradient-to-r from-indigo-500 to-pink-500 text-white py-2 px-4 rounded-md hover:from-indigo-600 hover:to-pink-600 focus:ring-2 focus:ring-indigo-400 transition-transform transform hover:scale-105">
+                                Send Email
+                            </button>
+                        </form>
+                    </div>
+                
+                    <script  data-th-src="@{'/js/SendEmail_func.js'}">
+                    </script>
+            
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script data-th-src="@{'/js/admin.js'}"></script>
+
+    <script>
+    </script>
+</body>
+
+</html>

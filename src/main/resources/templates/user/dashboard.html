@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html data-th-replace="~{base::parent(~{::#content},~{::title},~{::script})}" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-th-text="${loggedInUser.name}+' | Dashboard'">Dashboard</title>
+</head>
+
+<body>
+
+    <div id="content">
+
+        <!-- Sidebar -->
+        <div th:if="${loggedInUser}">
+            <div data-th-replace="~{user/sidebar::sidebar}"></div>
+        </div>
+        <div class=" sm:pl-64 pt-20">
+            <div class="flex justify-center flex-col items-center">
+
+
+                <div class="bg-gray-100 dark:bg-gray-800 py-8 px-6">
+                    <h2 class="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-white">Tips & Resources</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+                
+                        <!-- Tips Card -->
+                        <div class="bg-white dark:bg-gray-900 p-4 rounded-lg shadow hover:shadow-lg ">
+                            <h3 class="text-lg font-semibold mb-2 text-gray-800 dark:text-white">Email Tips</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                                Learn best practices for effective email communication.
+                            </p>
+                            <a data-th-href="@{'/tips'}" class="text-indigo-600 font-medium hover:underline dark:text-indigo-400">
+                                Read Tips →
+                            </a>
+                        </div>
+                
+                        <!-- FAQs Card -->
+                        <div class="bg-white dark:bg-gray-900 p-4 rounded-lg shadow hover:shadow-lg ">
+                            <h3 class="text-lg font-semibold mb-2 text-gray-800 dark:text-white">FAQs</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                                Have questions? Find answers in our FAQ section.
+                            </p>
+                            <a data-th-href="@{'/faqs'}" class="text-indigo-600 font-medium hover:underline dark:text-indigo-400">
+                                View FAQs →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+
+
+            </div>
+        </div>
+    </div>
+    <script></script>
+</body>
+
+</html>

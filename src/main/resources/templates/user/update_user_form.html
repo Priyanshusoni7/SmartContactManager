@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html data-th-replace="~{base::parent(~{::#content},~{::title},~{::script})}" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Contact Interface</title>
+</head>
+
+<body>
+
+    <div id="content">
+
+        <!-- Sidebar -->
+        <div th:if="${loggedInUser}">
+            <div data-th-replace="~{user/sidebar::sidebar}"></div>
+        </div>
+
+        <div class="sm:pl-64 pt-20" style="height: 1000px;">
+            <div class="grid grid-cols-12">
+                <div class="col-span-3"></div>
+                <div class="col-span-12 md:col-span-6">
+                    <div
+                        class="card  block p-4 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                        <h1 class="text-2xl font-semibold">Update Contact</h1>
+
+
+                        <!-- message -->
+                        <div class="mt-5">
+                            <div data-th-replace="~{message::messagebox}">
+                            </div>
+                        </div>
+
+                        <!-- form -->
+                        <form class="mt-5" data-th-action="@{'/user/profile/edit/' + ${userEmail}}"
+                            data-th-object="${userForm}" method="post" enctype="multipart/form-data" novalidate>
+
+                            <!-- name input -->
+                            <div class="mb-3">
+                                <label for="input-group-1"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contact
+                                    Name</label>
+                                <div class="relative mb-1">
+                                    <div
+                                        class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                        <i class="fa-regular fa-user h-4 w-4"></i>
+                                    </div>
+                                    <input data-th-field="*{name}" type="text"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Name">
+                                        <p class="text-red-500" data-th-if="${#fields.hasErrors('name')}"
+                                        data-th-errors="*{name}">Invadid Name</p>
+                                </div>
+
+                            </div>
+
+                            <!-- Email input -->
+                            <div class="mb-3">
+                                <label for="input-group-1"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contact
+                                    Email</label>
+                                <div class="relative mb-1">
+                                    <div
+                                        class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                        <i class="fa-regular fa-envelope h-4 w-4"></i>
+                                    </div>
+                                    <input data-th-field="*{email}" type="text" readonly
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="john@gmail.com">
+                                </div>
+
+                            </div>
+
+
+                            <!-- PhoneNum input -->
+                            <div class="mb-3">
+                                <label for="input-group-1"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contact
+                                    Number</label>
+                                <div class="relative mb-1">
+                                    <div
+                                        class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                        <i class="fa-solid fa-phone h-4 w-4"></i>
+                                    </div>
+                                    <input data-th-field="*{phoneNumber}" type="text"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="">
+                                </div>
+                                <p class="text-red-500" data-th-if="${#fields.hasErrors('phoneNumber')}"
+                                    data-th-errors="*{phoneNumber}">Invadid phoneNumber</p>
+                            </div>
+
+                            <!-- about -->
+                            <div class="mb-3">
+
+                                <label for="message"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contact
+                                    Description</label>
+                                <textarea data-th-field="*{about}" rows="4"
+                                    class="block p-2.5 h-20 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="Write about your Contact..."></textarea>
+                            </div>
+
+                            <!-- ContactImage picture -->
+                            <div class="mb-3">
+                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                    for="large_size">Contact Image</label>
+                                <input id="image_file_upload"
+                                    class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-00 focus:outline-none dark:bg-gray-00 dark:border-gray-600 dark:placeholder-gray-400"
+                                    data-th-field="*{profilePic}" type="file">
+
+                                    <!-- Image Preview -->
+                                <img class="max-h-56 mx-auto rounded-lg shadow m-3" data-th-src="*{profilePic}"
+                                id="upload_image_preview" alt="" />
+                            </div>
+
+
+                            <!-- submit button -->
+                            <div class="button-container text-center">
+                                <button type="submit"
+                                    class="px-3 py-2 rounded bg-gray-800 hover:bg-gray-700 dark:bg-blue-600 hover:dark:bg-blue-700 text-white">
+                                    Update User Details
+                                </button>
+                                <button type="reset"
+                                    class="px-3 py-2 rounded bg-gray-800 hover:bg-gray-700 dark:bg-blue-600 hover:dark:bg-blue-700 text-white">
+                                    Reset
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script data-th-src="@{'/js/admin.js'}"></script>
+
+    <script>
+    </script>
+</body>
+
+</html>

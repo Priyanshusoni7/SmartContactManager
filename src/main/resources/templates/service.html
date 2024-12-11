@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" data-th-replace="~{base::parent(~{::#content},~{::title},~{::script})}">
+<head>
+    <title>Service </title>
+</head>
+<body>
+    <div id="content" th:classappend="${loggedInUser != null ? ' mt-10' : ''}">
+        <main class="container mx-auto px-6 py-10">
+            <!-- Header Section -->
+            <section class="text-center mb-12">
+                <h1 class="text-5xl font-extrabold text-gray-900 dark:text-gray-100">
+                    Our Services
+                </h1>
+                <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">
+                    Discover the cutting-edge features that make SCM the best tool for managing your contacts.
+                </p>
+            </section>
+
+            <!-- Service List Section -->
+            <section class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+                <!-- Service 1 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-lg hover:shadow-xl dark:bg-gray-800 dark:text-gray-200 transform transition duration-300 ease-in-out">
+                    <div class="text-center">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="6" x2="12" y2="12"></line><line x1="12" y1="12" x2="18" y2="12"></line></svg>
+                        <h3 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">Contact Management</h3>
+                        <p class="mt-4 text-gray-600 dark:text-gray-400">
+                            Easily add, edit, and organize your contacts in one central place. Sync across devices for easy access.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-lg hover:shadow-xl dark:bg-gray-800 dark:text-gray-200 transform transition duration-300 ease-in-out">
+                    <div class="text-center">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12H4"></path><path d="M12 20l8-8-8-8"></path></svg>
+                        <h3 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">Data Synchronization</h3>
+                        <p class="mt-4 text-gray-600 dark:text-gray-400">
+                            Automatically sync your contacts and data across all your devices to stay updated in real-time.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-lg hover:shadow-xl dark:bg-gray-800 dark:text-gray-200 transform transition duration-300 ease-in-out">
+                    <div class="text-center">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 9l2 2-2 2"></path><path d="M7 9l-2 2 2 2"></path><path d="M3 12h18"></path></svg>
+                        <h3 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">Secure Storage</h3>
+                        <p class="mt-4 text-gray-600 dark:text-gray-400">
+                            We ensure your contact information is safely stored with top-tier encryption to protect your privacy.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-lg hover:shadow-xl dark:bg-gray-800 dark:text-gray-200 transform transition duration-300 ease-in-out">
+                    <div class="text-center">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-purple-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 19l-7-7-7 7"></path><path d="M12 4v12"></path></svg>
+                        <h3 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">Collaboration Tools</h3>
+                        <p class="mt-4 text-gray-600 dark:text-gray-400">
+                            Share contact lists and collaborate with others in real-time. Manage your network seamlessly.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-lg hover:shadow-xl dark:bg-gray-800 dark:text-gray-200 transform transition duration-300 ease-in-out">
+                    <div class="text-center">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-teal-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 9l-7 7-7-7"></path><path d="M12 16V4"></path></svg>
+                        <h3 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">Customizable Interface</h3>
+                        <p class="mt-4 text-gray-600 dark:text-gray-400">
+                            Tailor your SCM dashboard to your needs with customizable settings and themes.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-lg hover:shadow-xl dark:bg-gray-800 dark:text-gray-200 transform transition duration-300 ease-in-out">
+                    <div class="text-center">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 19l-7-7-7 7"></path><path d="M12 4v12"></path></svg>
+                        <h3 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">Real-Time Notifications</h3>
+                        <p class="mt-4 text-gray-600 dark:text-gray-400">
+                            Receive instant updates when there are changes to your contacts or important notifications.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Service 7 -->
+                <div class="service-card bg-white p-8 rounded-lg shadow-lg hover:shadow-xl dark:bg-gray-800 dark:text-gray-200 transform transition duration-300 ease-in-out">
+                    <div class="text-center">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-pink-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 11h-8V3l-4 4 4 4v-4h8z"></path></svg>
+                        <h3 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">Mobile Compatibility</h3>
+                        <p class="mt-4 text-gray-600 dark:text-gray-400">
+                            Manage your contacts from anywhere with our mobile-friendly app for iOS and Android.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action Section -->
+            <section class="mt-12 text-center">
+                <h2 class="text-3xl font-semibold text-gray-800 dark:text-gray-100">Start Managing Your Contacts Today</h2>
+                <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">
+                    Sign up now and take control of your contacts with SCM. It's simple, secure, and free to get started!
+                </p>
+                <a data-th-href="${loggedInUser != null ? '/user/profile' : '/login'}" class="cta-button mt-6 inline-block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-4 shadow-lg transform transition-all duration-300">
+                    <span th:text="${loggedInUser != null ? 'Profile' : 'Get Started'}"></span>
+                </a>
+            </section>
+        </main>
+        <!-- Footer -->
+        <footer class="bg-gray-100 dark:bg-gray-800 py-6">
+            <div class="container mx-auto px-4 text-center text-gray-600 dark:text-gray-400">
+                <p>&copy; 2024 Smart Contact Manager.</p>
+            </div>
+        </footer>
+    </div>
+    <script>
+    </script>
+</body>
+</html>

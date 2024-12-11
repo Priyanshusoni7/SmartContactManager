@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" data-th-replace="~{base::parent(~{::#content},~{::title},~{::script})}">
+<head>
+    <title>Success Page</title>
+</head>
+<body>
+    <div id="content" class="text-1xl text-center  mx-auto w-1/2">
+        <!-- message -->
+        <div data-th-replace="~{message::messagebox}">
+
+        </div>
+
+        <a class="px-3 py-2 rounded bg-gray-900 text-white" data-th-href="@{'/login'}">Login</a>
+
+    </div>
+    <script>
+    </script>
+</body>
+</html>
