@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -61,8 +59,9 @@ public class user implements UserDetails {
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<contact> contactList = new ArrayList<>();
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> roleList = new ArrayList<>();
+    // @ElementCollection(fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    private List<UserRoleList> roleList = new ArrayList<>();
 
     private String emailToken;
 
@@ -73,7 +72,7 @@ public class user implements UserDetails {
         //converted in simpleGrandetAuthority -> inside this roles are strored 
         Collection<SimpleGrantedAuthority> roles = roleList
                                                     .stream()
-                                                    .map(role-> new SimpleGrantedAuthority(role))
+                                                    .map(role-> new SimpleGrantedAuthority(role.getRoleName()))
                                                     .collect(Collectors.toList());
         return roles;
     }

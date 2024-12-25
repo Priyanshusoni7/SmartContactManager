@@ -13,9 +13,11 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.stereotype.Component;
 import java.util.*;
 import com.ctm.contactManager.entities.Providers;
+import com.ctm.contactManager.entities.UserRoleList;
 import com.ctm.contactManager.entities.user;
 import com.ctm.contactManager.helper.AppConstants;
 import com.ctm.contactManager.repositories.UserRepo;
+import com.ctm.contactManager.repositories.UserRoleListRepo;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,7 +27,10 @@ import jakarta.servlet.http.HttpServletResponse;
 public class OAuthAuthenticationSuccessHandler implements AuthenticationSuccessHandler{
 
     @Autowired
-    UserRepo userRepo;
+    private UserRepo userRepo;
+
+    @Autowired
+    private UserRoleListRepo userRoleListRepo;
 
     Logger logger = LoggerFactory.getLogger(OAuthAuthenticationSuccessHandler.class);
 
@@ -48,7 +53,6 @@ public class OAuthAuthenticationSuccessHandler implements AuthenticationSuccessH
                 //making user for storing in DB
                 user user1 = new user();
                 user1.setUserId(UUID.randomUUID().toString());
-                user1.setRoleList(List.of(AppConstants.ROLE_USER));
                 user1.setEnabled(true);
                 user1.setEmailVerified(true);
                 user1.setPassword("dummy");
@@ -91,7 +95,12 @@ public class OAuthAuthenticationSuccessHandler implements AuthenticationSuccessH
                 user checkUser = userRepo.findByEmail(user1.getEmail()).orElse(null);
 
                 if(checkUser==null){
-                    userRepo.save(user1);
+                    user savedUser =userRepo.save(user1);
+
+                    UserRoleList userRoleList = new UserRoleList();
+                    userRoleList.setRoleName(AppConstants.ROLE_USER);
+                    userRoleList.setUser(savedUser);
+                    userRoleListRepo.save(userRoleList);
                 }
                 new DefaultRedirectStrategy().sendRedirect(request, response, "/user/profile");
 
